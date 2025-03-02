@@ -23,6 +23,16 @@ namespace Pong.GameObjects
             Position = new Point(21, (600-Texture.Height) / 2);
         }
 
+        public bool OffPlayer()
+        {
+            return Position.X < 0 - Texture.Width;
+        }
+
+        public bool OffAIPlayer()
+        {
+            return Position.X > 799;
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             Position = new Point((int)(Position.X + Direction.X * Speed), (int)(Position.Y + Direction.Y * Speed));

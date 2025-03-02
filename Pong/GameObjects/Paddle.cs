@@ -19,7 +19,13 @@ namespace Pong.GameObjects
         {
             Texture = texture;
             Speed = 10;
-            Position = new Point(0, (480 - 150) / 2);
+            Position = new Point(0, (600 - 150) / 2);
+            Direction = new Point(0, 0);
+        }
+
+        public virtual void Reset()
+        {
+            Position = new Point(0, (600 - 150) / 2);
             Direction = new Point(0, 0);
         }
 

@@ -37,9 +37,10 @@ namespace Pong
             // TODO: use this.Content to load your game content here
 
             _paddle1 = new Paddle(Content.Load<Texture2D>("paddle"));
-            _paddle1.Position = new Point(0, (600 - 150) / 2);
+            _paddle1.Reset();
+
             _paddle2 = new AIPaddle(Content.Load<Texture2D>("paddle"));
-            _paddle2.Position = new Point(800 - 20, (600 - 150) / 2);
+            _paddle2.Reset();
 
             _ball = new Ball(Content.Load<Texture2D>("ball"));
         }
@@ -63,6 +64,22 @@ namespace Pong
             _paddle1.Update(gameTime, _ball);
             _paddle2.Update(gameTime, _ball);
             _ball.Update(gameTime);
+
+            if (_ball.OffPlayer())
+            {
+                _ball.Position = new Point(21, (600 - _paddle1.Texture.Height) / 2);
+                _ball.Direction = new Vector2(1, 1);
+                _paddle1.Reset();
+                _paddle2.Reset();
+            }
+
+            if (_ball.OffAIPlayer())
+            {
+                _ball.Position = new Point(800 - _ball.Texture.Width, (600 - _paddle2.Texture.Height) / 2);
+                _ball.Direction = new Vector2(-1, 1);
+                _paddle1.Reset();
+                _paddle2.Reset();
+            }
 
             base.Update(gameTime);
         }

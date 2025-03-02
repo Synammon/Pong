@@ -14,6 +14,12 @@ namespace Pong.GameObjects
         {
         }
 
+        public override void Reset()
+        {
+            Position = new Point(780, (600 - 150) / 2);
+            Direction = new Point(0, 0);
+        }
+
         public override void Update(GameTime gameTime, Ball ball)
         {
             if (ball.Position.Y < Position.Y)
